@@ -1,33 +1,6 @@
-import "./styles.css";
 import jazzicon from "@metamask/jazzicon";
 import { useEffect } from "react";
-
-const charMapper = (function getCharMapper() {
-  let chars = {};
-  String("abcdefghijklmnopqrstuvwxyz")
-    .split("")
-    .map((char, _index) => {
-      chars[char] = _index + 1;
-    });
-  return chars;
-})();
-
-function is_numeric(str) {
-  return /^\d+$/.test(str);
-}
-
-function toHexSum(hex) {
-  let hexSum = 0;
-  for (let i = 0; i < hex.length; i++) {
-    if (is_numeric(hex[i])) {
-      hexSum += Number(hex[i]);
-    } else {
-      hexSum += charMapper[hex[i].toLowerCase()];
-    }
-  }
-
-  return hexSum;
-}
+import { toHexSum } from "./utils";
 
 export default function App() {
   function generate() {
